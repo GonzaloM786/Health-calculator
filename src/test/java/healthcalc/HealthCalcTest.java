@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,13 +52,13 @@ public class HealthCalcTest {
 	@DisplayName("Comprobar si el output es correcto para mujer")
 	public void heightMujer() throws Exception{
 		float res = 67 - 100 - (67 - 150) / 2.5f;
-		assertEquals(res, healthcalc.idealWeight(67, 'm'));
+		assertEquals(res, healthcalc.idealWeight(67, 'w'));
 
 		res = 180 - 100 - (180 - 150) / 2.5f;
-		assertEquals(res, healthcalc.idealWeight(180, 'm'));
+		assertEquals(res, healthcalc.idealWeight(180, 'w'));
 
 		res = 250 - 100 - (250 - 150) / 2.5f;
-		assertEquals(res, healthcalc.idealWeight(250, 'm'));
+		assertEquals(res, healthcalc.idealWeight(250, 'w'));
 	}
 
 	@Test
