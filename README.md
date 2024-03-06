@@ -16,10 +16,10 @@ Una vez pasados los tests, se puede comprobar que no hubo ningún error:
 ```xml
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="healthcalc.HealthCalcTest" time="0.071" tests="14" errors="0" skipped="0" failures="0">
 ```
-El xml generado una vez ejecutados los tests se ve de la siguiente manera:
+El resultado de la consola:
 <div style="text-align:center">
   <p align="center">
-  <img src="images/Test-xml.png"/>
+  <img src="images/tests.png"/>
   </p>
 </div>
 
@@ -60,4 +60,4 @@ Como se puede observar, es un proyecto sencillo y corto el cual no requiere de u
 
 * Uso de git y GitHub.
 * Implementación de código eficiente en `java`.
-* Implementación de test con `JUnit` y uso de `Maven`.
+* Implementación de tests con `JUnit` y uso de `Maven`.
