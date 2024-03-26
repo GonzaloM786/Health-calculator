@@ -47,4 +47,4 @@ public class HealthCalcImpl implements HealthCalc {
         }
     }
 
-}
+}   
