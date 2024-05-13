@@ -1,14 +1,13 @@
 package healthcalc;
 
-public abstract class BaseDecorator implements HealthHospital, HealthStats{
-	
+public abstract class BaseDecorator implements HealthHospital, HealthStats {
+
 	private StatsProxy calculadora;
-	
+
 	public BaseDecorator() {
 		calculadora = new StatsProxy();
 	}
-	
-	
+
 	@Override
 	public double bmr(char genero, int edad, float altura, int peso) throws Exception {
 		return calculadora.bmr(genero, edad, altura, peso);
@@ -18,7 +17,7 @@ public abstract class BaseDecorator implements HealthHospital, HealthStats{
 	public int pesoIdeal(char genero, float altura) throws Exception {
 		return calculadora.pesoIdeal(genero, altura);
 	}
-	
+
 	@Override
 	public float alturaMedia() {
 		return calculadora.alturaMedia();
@@ -53,5 +52,5 @@ public abstract class BaseDecorator implements HealthHospital, HealthStats{
 	public int numTotalPacientes() {
 		return calculadora.numTotalPacientes();
 	}
-	
+
 }

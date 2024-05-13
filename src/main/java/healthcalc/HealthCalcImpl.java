@@ -18,7 +18,7 @@ public class HealthCalcImpl implements HealthCalc {
 	
 	
     @Override
-    public float idealWeight(int height, char gender) throws Exception {
+	public float idealWeight(int height, char gender) throws Exception {
         Character genero = Character.toLowerCase(gender);
         if (genero != 'm' && genero != 'w') {
             throw new RuntimeException("El género no es correcto");
