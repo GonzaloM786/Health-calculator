@@ -4,22 +4,16 @@ import java.util.ArrayList;
 
 public class StatsProxy implements HealthStats, HealthHospital{
 
-	private static ArrayList<Float> alturas;
-	private static ArrayList<Integer> pesos;
-	private static ArrayList<Integer> edades;
-	private static int numH;
-	private static int numM;
-	private static ArrayList<Double> lista_bmr;
-	private static HealthHospital calculadora;
+	private static ArrayList<Float> alturas = new ArrayList<Float>();
+	private static ArrayList<Integer> pesos = new ArrayList<Integer>();
+	private static ArrayList<Integer> edades = new ArrayList<Integer>();
+	private static int numH = 0;
+	private static int numM = 0;
+	private static ArrayList<Double> lista_bmr = new ArrayList<Double>();
+	private static HealthHospital calculadora = new HospitalAdapter();
 	
 	public StatsProxy() {
-		alturas = new ArrayList<Float>();
-		pesos = new ArrayList<Integer>();
-		edades = new ArrayList<Integer>();
-		numH = 0;
-		numM = 0;
-		lista_bmr = new ArrayList<Double>();
-		calculadora = new HospitalAdapter();
+
 	}
 	
 	private static <T extends Number> float calcularMedia(ArrayList<T> lista) {

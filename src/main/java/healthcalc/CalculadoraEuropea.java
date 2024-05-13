@@ -16,4 +16,39 @@ public class CalculadoraEuropea extends BaseDecorator{
 	public int pesoIdeal(char genero, float altura) throws Exception {
 		return super.pesoIdeal(genero, altura);
 	}
+	
+	@Override
+	public float alturaMedia() {
+		return super.alturaMedia();
+	}
+	
+	@Override
+	public float pesoMedio() {
+		return super.pesoMedio();
+	}
+
+	@Override
+	public float edadMedia() {
+		return super.edadMedia();
+	}
+
+	@Override
+	public float bmrMedio() {
+		return super.bmrMedio();
+	}
+
+	@Override
+	public int numSexoH() {
+		return super.numSexoH();
+	}
+
+	@Override
+	public int numSexoM() {
+		return super.numSexoM();
+	}
+
+	@Override
+	public int numTotalPacientes() {
+		return super.numTotalPacientes();
+	}
 }
