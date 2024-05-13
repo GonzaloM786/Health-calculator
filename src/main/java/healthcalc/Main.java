@@ -13,18 +13,18 @@ public class Main {
 		
 		HealthHospital calcHospital = new HospitalAdapter();
 		
-		System.out.println("Hospital adapter:" + calcHospital.pesoIdeal('m', 180));
-		System.out.println("Hospital adapter:" + calcHospital.bmr('m', 25, 180, 70));
+		System.out.println("Hospital adapter:" + calcHospital.pesoIdeal('m', (float) 1.8));
+		System.out.println("Hospital adapter:" + calcHospital.bmr('m', 25, (float) 1.8, 70000));
 		
 		// Proxy
 		
 		StatsProxy calculadoraProxy = new StatsProxy();
 		
-		System.out.println("Hospital proxy:" + calculadoraProxy.pesoIdeal('m', 180));
-		System.out.println("Hospital proxy:" + calculadoraProxy.bmr('m', 25, 180, 70));
-		calculadoraProxy.bmr('w', 45, 190, 80);
-		calculadoraProxy.bmr('w', 67, 170, 50);
-		calculadoraProxy.bmr('m', 50, 180, 50);
+		System.out.println("Hospital proxy:" + calculadoraProxy.pesoIdeal('m', (float) 1.8));
+		System.out.println("Hospital proxy:" + calculadoraProxy.bmr('m', 25, (float) 1.8, 70000));
+		calculadoraProxy.bmr('w', 45, (float) 1.9, 80000);
+		calculadoraProxy.bmr('w', 67, (float) 1.7, 50000);
+		calculadoraProxy.bmr('m', 50, (float) 1.8, 50000);
 		
 		System.out.println("Altura media:" + calculadoraProxy.alturaMedia());
 		System.out.println("Peso medio:" + calculadoraProxy.pesoMedio());
