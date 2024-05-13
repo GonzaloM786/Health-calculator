@@ -1,41 +1,54 @@
-# Práctica 4: Interfaz gráfica de usuario
+# Práctica 6: Patrones de diseño
 
 ## Introducción
 
-En esta parte de la práctica se pretende implementar una interfaz gráfica de usuario de la calculadora de salud. Para ello se usará `WindowBuilder`, el cual proporiona el diseño de la interfaz. Además se seguirá el modelo-vista-controlador, esencial para implementar IGU que cumplan con los principios de la ingeniería del software.
+En este apartado, se simulará la integración de la calculadora en el `Hospital Costa del Sol`, de donde se ha pedido la adaptación de la misma a las nuevas condiciones y la implementación de nuevas funcionalidades. En los siguientes apartados, se discutirá el patrón de diseño empleado en cada caso además del diagrama UML correspondiente. Para ver detalles específicos de la implementación, se puede consultar el código dentro de la carpeta `src`.
 
-## Boceto
+## Cuestiones
 
-Para el diseño del boceto se ha utilizado `Pencil`, que es un software gratuito para el diseño de bocetos para IGU. Todo gira alrededor de una única ventana, en la cual de un simple vistazo es fácil reconocer los parámetros necesarios a introducir. 
+### Aplicación del Singleton
 
-<div style="text-align:center">
-  <p align="center">
-  <img src="imagenes/BocetoCalculadora.png"/>
-  </p>
-</div>
-
-## Implementación 
-
-Para la implementación, como se ha mencionado anteriormente se ha usado el modelo-vista-controlador:
-
-* __Modelo__: el modelo corresponde a la implementación de la calculadora realizada en prácticas anteriores.
-* __Vista__: es la clase que gestiona la interfaz gráfica.
-* __Controlador__: hace de intermediario entre el modelo y la vista, interaccionando con ambas.
-
-Para más detalles, se puede ver el código dentro de la carpeta `src`. La implementación final luce de la siguiente manera:
+Este patrón de diseño se asegura de que solo exista una única instancia de la clase en cuestión. Al contener la clase `HealthCalcImpl` únicamente dos métodos, no tiene sentido usar crear distintas instancias de la clase.
 
 <div style="text-align:center">
   <p align="center">
-  <img src="imagenes/diseñoFinal.png"/>
+  <img src="design_patterns/SingleTone.png"/>
   </p>
 </div>
 
-Además, unas ventanas de error aparecen cuando hay algún error en los parámetros que impide que se realice el cálculo. El archivo .jar contiene el programa ejecutable.
+### Adaptación a la nueva interfaz del hospital
+
+El hospital ha pedido al equipo de desarrollo reutilizar la implementación existente de la calculadora para adaptarla a la nueva interfaz `HealthHospital`. Para ello se ha usado el patrón **Adapter**, el cual crea una clase que implementa la nueva interfaz, y a la vez usa una instacia de una clase que implementa la interfaz antigua. De esta manera, se adapta la funcionalidad para cumplimentar con los requisitos del hospital sin perder la antigua implementación.
+
+<div style="text-align:center">
+  <p align="center">
+  <img src="design_patterns/Adapter.png"/>
+  </p>
+</div>
+
+### Sistema de logging
+
+Desde el hospital se ha pedido además que se lleve un registro de los datos, tanto de entrada como de salida, que se usan en la calculadora de acuerdo con la interfaz `HealthStats`. El patrón ideal es el **proxy**, ya que permitirá hacer el registro mientras se delega el cálculo a una clase que implemente la calculadora. El proxy contiene una referencia a una calculadora, encargada del cálculo, y el resto de funciones necesarias para el logging.
+
+<div style="text-align:center">
+  <p align="center">
+  <img src="design_patterns/Proxy.png"/>
+  </p>
+</div>
+
+### Versiones según la región
+
+Por último, se pide hacer dos versiones de la calculadora, una europea y otra americana. La diferencia radica en las unidades que toma de entrada. Para el cálculo del `bmr`, además debe imprimir por pantalla un mensaje, tanto en inglés como en español, donde se indique claramente el resultado de la operación, para ambas versiones. Para ello se ha usado un **decorador**, el cual hereda a dos clases, una para cada versión. Estas clases hijas son las encargadas de hacer adaptar el cálculo a las nuevas unidades y en caso necesario imprimir por pantalla. Además, para no perder las funionalidades anteriores, la referencia de la clase padre a la calculadora, es la implementada en el proxy.
+
+<div style="text-align:center">
+  <p align="center">
+  <img src="design_patterns/Decoradores.png"/>
+  </p>
+</div>
+
 
 ## Habilidades practicadas
 
 * Uso de git y GitHub
-* Diseño de bocetos
-* Uso de WindowBuilder y elementos Swing
-* Implementación de interfaces gráficas de usuario siguiendo el modelo-vista-controlador
-* Generación de archivos .jar ejecutables
+* Uso de patrones de diseño
+* Creación de diagramas de clases UML
