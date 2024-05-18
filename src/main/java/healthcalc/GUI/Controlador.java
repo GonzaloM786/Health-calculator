@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import healthcalc.CalculadoraEuropea;
 import healthcalc.CardiovascularMetrics;
 import healthcalc.Gender;
 import healthcalc.MetabolicMetrics;

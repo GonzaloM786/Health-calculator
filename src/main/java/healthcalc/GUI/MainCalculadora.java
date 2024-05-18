@@ -1,7 +1,6 @@
 package healthcalc.GUI;
 
 import java.awt.EventQueue;
-import healthcalc.CalculadoraEuropea;
 import healthcalc.CardiovascularMetrics;
 import healthcalc.MetabolicMetrics;
 

@@ -17,7 +17,7 @@ public class MetabolicMetrics {
                 resultado = 10 * peso + 6.25f * altura - 5 * edad - 161;
             }
             if (resultado < 0) {
-                throw new RuntimeException("El resultado de la operación es negativo");
+                throw new IllegalArgumentException("El resultado de la operación es negativo");
             } else {
                 return resultado;
             }
