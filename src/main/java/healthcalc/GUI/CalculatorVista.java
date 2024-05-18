@@ -202,7 +202,7 @@ public class CalculatorVista {
 		this.textField_BMR.setText(String.valueOf(res));
 	}
 
-	public void setTextField_IMC(float res) {
+	public void setTextField_IMC(double res) {
 		this.textField_IMC.setText(String.valueOf(res));
 	}
 
