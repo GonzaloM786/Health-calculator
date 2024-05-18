@@ -4,62 +4,59 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import healthcalc.HealthCalcImpl;
+import healthcalc.CalculadoraEuropea;
 
-public class Controlador implements ActionListener{
+public class Controlador implements ActionListener {
 
-	private HealthCalcImpl calculadora;
+	private CalculadoraEuropea calculadora;
 	private CalculatorVista vista;
-	
+
 	private char gender;
-	private int height;
-	private float weight;
+	private float height;
+	private int weight;
 	private int age;
-	private float resultado;
-	
-	
-	public Controlador(HealthCalcImpl calc, CalculatorVista vista) {
+	private double resultado_bmr;
+	private int resultado_imc;
+
+	public Controlador(CalculadoraEuropea calc, CalculatorVista vista) {
 		this.calculadora = calc;
 		this.vista = vista;
 	}
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		String command = e.getActionCommand();
-		if(command.equalsIgnoreCase("Male")) {
+		if (command.equalsIgnoreCase("Male")) {
 			gender = 'm';
 			vista.getbMale().setBackground(Color.ORANGE);
 			vista.getbFemale().setBackground(Color.WHITE);
-			
-		}else if(command.equalsIgnoreCase("Female")) {
+
+		} else if (command.equalsIgnoreCase("Female")) {
 			gender = 'w';
 			vista.getbFemale().setBackground(Color.ORANGE);
 			vista.getbMale().setBackground(Color.WHITE);
-		}else if(command.equalsIgnoreCase("IMC")) {
+		} else if (command.equalsIgnoreCase("IMC")) {
 			try {
-				height = (Integer) vista.getSpinner_Height().getValue();
-				resultado = calculadora.idealWeight(height, gender);
-				vista.setTextField_IMC(resultado);
-			}catch(Exception ex) {
+				height = Float.parseFloat(String.valueOf(vista.getSpinner_Height().getValue()));
+				resultado_imc = calculadora.pesoIdeal(gender, height);
+				vista.setTextField_IMC(resultado_imc);
+			} catch (Exception ex) {
 				vista.errorIMC();
 			}
-			
-			
-		}else if(command.equalsIgnoreCase("BMR")) {
+
+		} else if (command.equalsIgnoreCase("BMR")) {
 			try {
-				height = (Integer) vista.getSpinner_Height().getValue();
-				weight = Float.parseFloat(vista.getTextField_Weight().getText());
+				height = Float.parseFloat(String.valueOf(vista.getSpinner_Height().getValue()));
+				weight = Integer.parseInt(vista.getTextField_Weight().getText());
 				age = (Integer) vista.getSpinner_Age().getValue();
-				resultado = calculadora.basalMetabolicRate(weight, height, gender, age);
-				vista.setTextField_BMR(resultado);
-			}catch(Exception ex) {
+				resultado_bmr = calculadora.bmr(gender, age, height, weight);
+				vista.setTextField_BMR(resultado_bmr);
+			} catch (Exception ex) {
 				vista.errorBMR();
 			}
 		}
-		
+
 	}
 
-	
 }
