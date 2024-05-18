@@ -2,14 +2,6 @@ package healthcalc;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		// SingleTone
-		HealthCalcImpl calculadora1 = HealthCalcImpl.getInstance();
-		HealthCalcImpl calculadora2 = HealthCalcImpl.getInstance();
-
-		System.out.println("---------------------------------------");
-		System.out.println("SingleTone ideal weight: " + calculadora1.idealWeight(180, 'm'));
-		System.out.println("SingleTone ideal weight: " + calculadora2.idealWeight(180, 'm'));
-		System.out.println("---------------------------------------");
 		// Adaptador para el hospital
 
 		HealthHospital calcHospital = new HospitalAdapter();
