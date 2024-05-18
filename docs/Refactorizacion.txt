@@ -1,0 +1,18 @@
+
+Bad smell: large class
+
+Refactoring applied and its type: extract class (class refactoring)
+
+Changes: the HealthCalcImpl class has been divided into two classes, one for the cardiovascular metrics and another for the metabolic metrics. This makes the code opened for extension.
+
+Number of manual changes: 2 new classes. 
+----------------------------------------------------------------
+Bad smell: long parameter list.
+
+Refactoring applied and its type: introduce parameter object (method refactoring), extract class (class refactoring).
+
+NOTE: in order to not change the interface provided by the hospital (refactoring this would mean to not adapt to the client's conditions), the HealthHosptial interface was not changed, as well as the input of the rest of the classes that use it (adapter, proxy and decorators). However, the HospitalAdapter class uses the two new classes, CardiovascularMetrics and MetabolicMetrics, which do implement the new changes, e.g. taking a Persona object instead of a long list of parameters.
+
+Changes: Gender enum and Persona class (extending from Person interface) have been created. Classes CardiovascularMetrics and MetabolicMetrics now take a Persona object as an argument. Class HealthHospital uses the new classes.
+
+Number of manual changes: 1 new enum, 1 new interface, 1 new class.

@@ -2,7 +2,8 @@ package healthcalc;
 
 public class HospitalAdapter implements HealthHospital {
 
-	private HealthCalc calculadora = HealthCalcImpl.getInstance();
+	private CardiovascularMetrics calculadora_cardiovascular = new CardiovascularMetrics();
+	private MetabolicMetrics calculadora_metabolica = new MetabolicMetrics();
 
 	// Altura en metros y peso en gramos
 
@@ -11,14 +12,32 @@ public class HospitalAdapter implements HealthHospital {
 		float weight = Float.valueOf(peso / 1000);
 		int height = Math.round(altura * 100);
 
-		return Double.valueOf(calculadora.basalMetabolicRate(weight, height, genero, edad));
+		Character genero_unificado = Character.toLowerCase(genero);
+		Gender gender = null;
+		if(genero_unificado == 'm'){
+			gender = Gender.MALE;
+		} else if(genero_unificado == 'w'){
+			gender = Gender.FEMALE;
+		}
+		Persona persona = new Persona(weight, height, gender, edad);
+
+		return Double.valueOf(calculadora_metabolica.basalMetabolicRate(persona));
 	}
 
 	@Override
 	public int pesoIdeal(char genero, float altura) throws Exception {
 		int height = Math.round(altura * 100);
 
-		return Math.round(calculadora.idealWeight(height, genero));
+		Character genero_unificado = Character.toLowerCase(genero);
+		Gender gender = null;
+		if(genero_unificado == 'm'){
+			gender = Gender.MALE;
+		} else if(genero_unificado == 'w'){
+			gender = Gender.FEMALE;
+		}
+		Persona persona = new Persona(height, gender);
+
+		return (int) Math.round(calculadora_cardiovascular.getIdealBodyWeight(persona));
 	}
 
 }

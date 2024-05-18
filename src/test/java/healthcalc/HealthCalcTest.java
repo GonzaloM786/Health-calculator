@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Tests para la calculadora de salud.")
 public class HealthCalcTest {
 
-	private final HealthCalc healthcalc = new HealthCalcImpl();
+	private final HealthCalc healthcalc = HealthCalcImpl.getInstance();
 
 	// Tests para la clase idealWeight
 
