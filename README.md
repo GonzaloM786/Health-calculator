@@ -1,41 +1,57 @@
-# Práctica 4: Interfaz gráfica de usuario
+# Práctica 7: Refactorings
 
 ## Introducción
 
-En esta parte de la práctica se pretende implementar una interfaz gráfica de usuario de la calculadora de salud. Para ello se usará `WindowBuilder`, el cual proporiona el diseño de la interfaz. Además se seguirá el modelo-vista-controlador, esencial para implementar IGU que cumplan con los principios de la ingeniería del software.
+Tomando como referencia el código correspondiente a la rama `practica6`, en esta práctica se hará una refactorización de todo el código, con el objetivo de hacer este más legible y aplicar buenas técnicas de programación. A continuación se muestran los distintos `bad smell` localizados y la manera en la que se han resuelto.
 
-## Boceto
+## Refactorización
 
-Para el diseño del boceto se ha utilizado `Pencil`, que es un software gratuito para el diseño de bocetos para IGU. Todo gira alrededor de una única ventana, en la cual de un simple vistazo es fácil reconocer los parámetros necesarios a introducir. 
 
-<div style="text-align:center">
-  <p align="center">
-  <img src="imagenes/BocetoCalculadora.png"/>
-  </p>
-</div>
+>> Bad smell: large class
+>>
+>> Refactoring applied and its type: extract class (class refactoring)
+>>
+>> Changes: the HealthCalcImpl class has been divided into two classes, one for the cardiovascular metrics and another for the metabolic metrics. This makes the code opened for extension.
+>>
+>> Number of manual changes: 2 new classes. 
+>
+>> Bad smell: long parameter list and magic numbers (gender not as enum).
+>> 
+>> Refactoring applied and its type: introduce parameter object (method refactoring), extract class (class refactoring).
+>> 
+>> NOTE: in order to not change the interface provided by the hospital (refactoring this would mean to not adapt to the client's conditions), the HealthHosptial interface was
+>> not changed, as well as the input of the rest of the classes that use it (adapter, proxy and decorators). However, the HospitalAdapter class uses the two new classes,
+>> CardiovascularMetrics and MetabolicMetrics, which do implement the new changes, e.g. taking a Persona object instead of a long list of parameters.
+>> 
+>> Changes: Gender enum and Persona class (extending from Person interface) have been created. Classes CardiovascularMetrics and MetabolicMetrics now take a Persona object as an argument.
+>> Class HealthHospital and GUI use the new classes. Tests have been changed to check the new classes.
+>>
+>> Number of manual changes: 1 new enum, 1 new interface, 1 new class; 5 classes modified and tests changed.
+>
+>> Bad smell: dead code
+>> 
+>> Refactoring applied and its type: remove unused code (method refactoring)
+>> 
+>> Changes: in the child classes CalculadoraEuropea and CalculadoraAmericana the methods that were just calling the parent class have been deleted. The functionality has been maintained
+>> since the parent class is the one which implements the functionality.
+>> 
+>> Number of manual changes: 2 blocks of code deleted. 
+>
+>> Bad smell: dead code
+>> 
+>> Refactoring applied and its type: remove unused code (class refactoring)
+>> 
+>> Changes: due to the refactorings applied before, the interface HealthCalc and the class HealthCalcImpl are no longer used, therefore they have been deleted.
+>> 
+>> Number of manual changes: 1 interface and 1 class deleted. 
 
-## Implementación 
 
-Para la implementación, como se ha mencionado anteriormente se ha usado el modelo-vista-controlador:
+## Conclusión
 
-* __Modelo__: el modelo corresponde a la implementación de la calculadora realizada en prácticas anteriores.
-* __Vista__: es la clase que gestiona la interfaz gráfica.
-* __Controlador__: hace de intermediario entre el modelo y la vista, interaccionando con ambas.
-
-Para más detalles, se puede ver el código dentro de la carpeta `src`. La implementación final luce de la siguiente manera:
-
-<div style="text-align:center">
-  <p align="center">
-  <img src="imagenes/diseñoFinal.png"/>
-  </p>
-</div>
-
-Además, unas ventanas de error aparecen cuando hay algún error en los parámetros que impide que se realice el cálculo. El archivo .jar contiene el programa ejecutable.
+Resumiendo, los cambios principales que se han hecho durante la refactorización, han sido la creación de una clase persona, que toma un tipo enum como género. Además la clase HealthCalcImpl se ha divido en dos por cuestiones semánticas. Por último se han borrado aquellas partes no necesarias del código, haciendolo más legible y mantenible sin cambiar la funcionalidad.
 
 ## Habilidades practicadas
 
 * Uso de git y GitHub
-* Diseño de bocetos
-* Uso de WindowBuilder y elementos Swing
-* Implementación de interfaces gráficas de usuario siguiendo el modelo-vista-controlador
-* Generación de archivos .jar ejecutables
+* Aplicación de técnicas de refactorización
+* Documentación usando vocabulario específico
