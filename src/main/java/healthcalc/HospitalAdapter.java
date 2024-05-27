@@ -2,8 +2,7 @@ package healthcalc;
 
 public class HospitalAdapter implements HealthHospital {
 
-	private CardiovascularMetrics calculadora_cardiovascular = new CardiovascularMetrics();
-	private MetabolicMetrics calculadora_metabolica = new MetabolicMetrics();
+	private HealthCalc calculadora = HealthCalcImpl.getInstance();
 
 	// Altura en metros y peso en gramos
 
@@ -21,7 +20,7 @@ public class HospitalAdapter implements HealthHospital {
 		}
 		Persona persona = new Persona(weight, height, gender, edad);
 
-		return Double.valueOf(calculadora_metabolica.basalMetabolicRate(persona));
+		return Double.valueOf(calculadora.basalMetabolicRate(persona));
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class HospitalAdapter implements HealthHospital {
 		}
 		Persona persona = new Persona(height, gender);
 
-		return (int) Math.round(calculadora_cardiovascular.getIdealBodyWeight(persona));
+		return (int) Math.round(calculadora.getIdealBodyWeight(persona));
 	}
 
 }
