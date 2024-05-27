@@ -2,7 +2,7 @@ package healthcalc;
 
 public class HospitalAdapter implements HealthHospital {
 
-	private HealthCalc calculadora = HealthCalcImpl.getInstance();
+	private HealthCalcImpl calculadora = HealthCalcImpl.getInstance();
 
 	// Altura en metros y peso en gramos
 
